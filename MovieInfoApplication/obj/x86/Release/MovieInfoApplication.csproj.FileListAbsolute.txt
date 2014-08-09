@@ -6,3 +6,11 @@ C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\Movi
 C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.pdb
 C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.exe
 C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.pdb
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.exe
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.pdb
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.csprojResolveAssemblyReference.cache
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.exe
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.pdb
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.dll
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.pdb
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.xml

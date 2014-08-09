@@ -5,6 +5,9 @@ using System.Text;
 using System.Net;
 using System.IO;
 using MovieInfoApplication.MovieInfo;
+using System.Runtime;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace MovieInfoApplication
 {
@@ -18,13 +21,17 @@ namespace MovieInfoApplication
             //perhaps do as user input if time
             string json = getMovieTitlesJSON(10);
 
-            Console.WriteLine(json);
+            //Console.WriteLine(json);
 
            
             //dynamically make all 10 movies elsewhere            
             Movie guardians = new Movie("guardians",null);
             string title = guardians.getTitle();
             Console.WriteLine(title);
+
+            JObject movie1 = JsonConvert.DeserializeObject<JObject>(json);
+            Console.WriteLine(movie1);
+           
                        
         }
 
