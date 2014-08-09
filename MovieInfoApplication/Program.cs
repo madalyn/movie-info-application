@@ -19,6 +19,7 @@ namespace MovieInfoApplication
 
             //get 10 movies currently in theaters, give back the JSON (limit=10 var later)
             //perhaps do as user input if time
+            //need a catch if no movies, or less than input number
             string json = getMovieTitlesJSON(10);
 
             //Console.WriteLine(json);
@@ -30,11 +31,36 @@ namespace MovieInfoApplication
             Console.WriteLine(title);
 
             JObject movie1 = JsonConvert.DeserializeObject<JObject>(json);
-            Console.WriteLine(movie1);
+           // Console.WriteLine(movie1);
+
+            JSONParseDynamic(json);
            
                        
         }
+        /*
+        static List<string> JSONParseObject(string jsonText)
+        {
+            JObject jResults = JObject.Parse(jsonText);
+            List<string> counties = new List<string>();
+            foreach (var county in jResults["total"])
+            {
+                counties.Add((string)county["name"]);
+            }
+            return counties;
+        }*/
 
+        static List<string> JSONParseDynamic(string jsonText)
+        {
+            dynamic jResults = JsonConvert.DeserializeObject(jsonText);
+            List<string> titles = new List<string>();
+            foreach (var t in jResults.movies)
+            {
+                titles.Add((string)t.title);
+                Console.WriteLine((string)t.title);
+            }
+            
+            return titles;
+        }
 
         static string getMovieTitlesJSON(int numTitles)
         {
