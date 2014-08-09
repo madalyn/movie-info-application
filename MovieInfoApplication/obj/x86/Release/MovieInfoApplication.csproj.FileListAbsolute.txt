@@ -1,0 +1,8 @@
+C:\Users\Madalyn\AppData\Local\Temporary Projects\ConsoleApplication1\bin\Release\ConsoleApplication1.exe
+C:\Users\Madalyn\AppData\Local\Temporary Projects\ConsoleApplication1\bin\Release\ConsoleApplication1.pdb
+C:\Users\Madalyn\AppData\Local\Temporary Projects\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.exe
+C:\Users\Madalyn\AppData\Local\Temporary Projects\ConsoleApplication1\obj\x86\Release\ConsoleApplication1.pdb
+C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.exe
+C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.pdb
+C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.exe
+C:\Users\Madalyn\Documents\Visual Studio 2010\Projects\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.pdb
