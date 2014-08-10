@@ -23,26 +23,38 @@ namespace MovieInfoApplication.MovieInfo
             this.rtid = rtid;
         }
 
-        /**
-        * Method to return the title of the movie
-        */
+        /// <summary>
+        /// Method to return the title of the movie
+        /// </summary>
+        /// <returns></returns>
         public string getTitle()
         {
             return title;
         }
 
-        /**
-         * Method to return a list of Actors in the movie
-         */
+        /// <summary>
+        /// Method to return a list of Actors in the movie
+        /// </summary>
+        /// <returns></returns>
         public List<Actor> getActorsInMovie() 
         {
             return actors;
         }
 
-        /**
-         * Method that gives back the average age of the cast
-         * Note: this will use a helper-function to find the number of actors
-         * */
+        /// <summary>
+        /// Gets the movie's specific rotten tomatoes ID
+        /// </summary>
+        /// <returns>the ID</returns>
+        public int getRTID()
+        {
+            return rtid;
+        }
+
+        /// <summary>
+        /// Method that gives back the average age of the cast
+        /// Note: this will this class's function got get the cast list
+        /// </summary>
+        /// <returns></returns>
         public double getAverageAgeOfCast()
         {
             List<Actor> cast = getActorsInMovie();
@@ -54,15 +66,6 @@ namespace MovieInfoApplication.MovieInfo
             }
 
             return ageTotal / (cast.Count);
-        }
-
-        /// <summary>
-        /// Gets the movie's specific rotten tomatoes ID
-        /// </summary>
-        /// <returns>the ID</returns>
-        public int getRTID()
-        {
-            return rtid;
         }
     }
 }

@@ -16,18 +16,22 @@ namespace MovieInfoApplication.MovieInfo
             this.age = age;
         }
 
-        /**
-        * A Method to return the age of this actor
-        * Note: this will either be a class property or come straight from JSON
-        * */
-        public int getAge()
-        {
-            return age;
-        }
-
+        /// <summary>
+        /// A Method to return the actor's name
+        /// </summary>
+        /// <returns></returns>
         public string getName()
         {
             return name;
+        }
+
+        /// <summary>
+        /// A Method to return the age of this actor
+        /// </summary>
+        /// <returns></returns>
+        public int getAge()
+        {
+            return age;
         }
     }
 }
