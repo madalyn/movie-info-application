@@ -29,6 +29,7 @@ namespace MovieInfoApplication
             foreach(var movie in movies){
                 Console.WriteLine(movie.getTitle()+"!");
                 Console.WriteLine(movie.getRTID());
+                //Console.WriteLine(movie.getAverageAgeOfCast());
 
                 foreach (var actor in movie.getActorsInMovie())
                 {

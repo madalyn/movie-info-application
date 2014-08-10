@@ -22,7 +22,7 @@ namespace MovieInfoApplication
          * Method that gives back the average age of the cast
          * Note: this will use a helper-function to find the number of actors
          * */
-        double getAverageAgeOfCast(List<Actor> cast);
+        double getAverageAgeOfCast();
 
         /// <summary>
         /// Gets the movie's specific rotten tomatoes ID

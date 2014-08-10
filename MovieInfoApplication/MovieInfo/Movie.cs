@@ -43,9 +43,17 @@ namespace MovieInfoApplication.MovieInfo
          * Method that gives back the average age of the cast
          * Note: this will use a helper-function to find the number of actors
          * */
-        public double getAverageAgeOfCast(List<Actor> cast)
+        public double getAverageAgeOfCast()
         {
-            return 1.0;
+            List<Actor> cast = getActorsInMovie();
+            double ageTotal = 0.0;
+
+            foreach (var actor in cast)
+            {
+                ageTotal += actor.getAge();
+            }
+
+            return ageTotal / (cast.Count);
         }
 
         /// <summary>
