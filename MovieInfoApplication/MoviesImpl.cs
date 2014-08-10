@@ -30,7 +30,7 @@ namespace MovieInfoApplication
             return movieList;
         }
 
-        public List<Actor> createActorsFromJSON(string json)
+        private List<Actor> createActorsFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
             List<Actor> castList = new List<Actor>();
@@ -47,9 +47,8 @@ namespace MovieInfoApplication
         /// This function deals with getting the appropriate number
         /// of movie objects in JSON form
         /// </summary>
-        /// <param name="numTitles">the number of movies to get</param>
+        /// <param name="numTitles">takes in the number of movies to get</param>
         /// <returns>the correct number of movies in a string of JSON</returns>
-        /// ********************use this
         public string getMoviesJSON(int numTitles)
         {
             string numString = numTitles.ToString();
@@ -74,17 +73,26 @@ namespace MovieInfoApplication
 
         private string doWebRequest(string url)
         {
-            WebRequest request = WebRequest.Create(url);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string json = reader.ReadToEnd();
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string json = reader.ReadToEnd();
 
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
 
-            return json;
+                return json;
+
+            }
+            catch(Exception e)
+            {
+                throw new ApplicationException("Could not connect to Rotten Tomatoes.\n\n", e);
+            }
+ 
         }
 
     }

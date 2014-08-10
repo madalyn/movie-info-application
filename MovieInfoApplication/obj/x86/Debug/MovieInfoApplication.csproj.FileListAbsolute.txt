@@ -1,0 +1,7 @@
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\MovieInfoApplication.exe
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\MovieInfoApplication.pdb
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Debug\MovieInfoApplication.exe
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Debug\MovieInfoApplication.pdb
