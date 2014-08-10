@@ -21,10 +21,10 @@ namespace MovieInfoApplication
             List<Movie> movieList = new List<Movie>();
 
             //"movies" and "title" come from JSON structure
-            foreach (var t in jResults.movies)
+            foreach (var movie in jResults.movies)
             {
-                //for each one, create a movie object & add to list
-                movieList.Add(new Movie((string)t.title, createActorsFromJSON(getActorsJSON((int)t.id)), (int)t.id));
+                //for each one, create a movie object & add to list; use movie id to generate actors
+                movieList.Add(new Movie((string)movie.title, createActorsFromJSON(getActorsJSON((int)movie.id)), (int)movie.id));
             }
 
             return movieList;

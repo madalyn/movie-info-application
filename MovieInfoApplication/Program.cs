@@ -15,7 +15,7 @@ namespace MovieInfoApplication
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Madalyn!");
+            Console.WriteLine("The movies currently in theaters are:");
             MoviesImpl impl = new MoviesImpl();
 
             //get 10 movies currently in theaters, give back the JSON (limit=10 var later)
@@ -26,16 +26,12 @@ namespace MovieInfoApplication
             //dynamically make all 10 movies elsewhere - C# properties           
             List<Movie> movies = impl.createMoviesFromJSON(moviesJSON);
 
+            int i = 1;
             foreach(var movie in movies){
-                Console.WriteLine(movie.getTitle()+"!");
-                Console.WriteLine(movie.getRTID());
-                //Console.WriteLine(movie.getAverageAgeOfCast());
-
-                foreach (var actor in movie.getActorsInMovie())
-                {
-                    Console.WriteLine(actor.getName());
-                }
-                
+                Console.WriteLine(i + ".)" + movie.getTitle());
+                Console.WriteLine("Average Age of Cast: " + movie.getAverageAgeOfCast());
+                Console.WriteLine("");
+                i++;              
             }             
         }
 
