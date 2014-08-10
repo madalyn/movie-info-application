@@ -20,13 +20,9 @@ namespace MovieInfoApplication
             Console.WriteLine("The movies currently in theaters are:");
             MoviesImpl impl = new MoviesImpl();
 
-            //get 10 movies currently in theaters, give back the JSON (limit=10 var later)
-            //perhaps do as user input if time
-            //need a catch if no movies, or less than input number
-            string moviesJSON = impl.getMoviesJSON(5); //improve speed of this
-                      
-            //dynamically make all 10 movies elsewhere - C# properties           
-            List<Movie> movies = impl.createMoviesFromJSON(moviesJSON);
+            //get # movies currently in theaters, give back the movies
+            //need a catch if no movies, or less than input number          
+            List<Movie> movies = impl.getMovies(5); //improve speed
 
             int i = 1;
             foreach(var movie in movies){

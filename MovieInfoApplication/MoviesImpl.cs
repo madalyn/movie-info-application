@@ -13,9 +13,16 @@ namespace MovieInfoApplication
     /// A class to configure the movie objects parsed
     /// from the recieved JSON
     /// </summary>
-    class MoviesImpl //the class itself should probably deal with the JSON. Too much passed around right now
+    class MoviesImpl
     {
-        public List<Movie> createMoviesFromJSON(string json)
+        public List<Movie> getMovies(int numTitles)
+        {
+            string moviesJSON = getMoviesJSON(numTitles);
+            return createMoviesFromJSON(moviesJSON);
+        }
+
+        // using the JSON string, creates the movie objects
+        private List<Movie> createMoviesFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
             List<Movie> movieList = new List<Movie>();
@@ -30,6 +37,7 @@ namespace MovieInfoApplication
             return movieList;
         }
 
+        // uses the JSON string to create actor objects for that movies entire cast
         private List<Actor> createActorsFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
@@ -43,13 +51,8 @@ namespace MovieInfoApplication
             return castList;
         }
 
-        /// <summary>
-        /// This function deals with getting the appropriate number
-        /// of movie objects in JSON form
-        /// </summary>
-        /// <param name="numTitles">takes in the number of movies to get</param>
-        /// <returns>the correct number of movies in a string of JSON</returns>
-        public string getMoviesJSON(int numTitles)
+        // deals with getting JSON string for the desired number of movies
+        private string getMoviesJSON(int numTitles)
         {
             string numString = numTitles.ToString();
             string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=" + numString + "&page=1&country=us&apikey=xyfqrbjvshc9vsupeht8dw2p";
@@ -57,13 +60,8 @@ namespace MovieInfoApplication
             return doWebRequest(url);
         }
 
-        /// <summary>
-        /// Takes in the movie's rotten tomatoes ID to do the query
-        /// for the correct cast
-        /// </summary>
-        /// <param name="id">the rotten tomatoes ID for the specific movie</param>
-        /// <returns>the correct raw json string</returns>
-        public string getActorsJSON(int id)
+        // using the movie's rotten tomatoes ID, query for the json of the entire cast
+        private string getActorsJSON(int id)
         {
             string idString = id.ToString();
             string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" + idString + "/cast.json?apikey=xyfqrbjvshc9vsupeht8dw2p";
@@ -71,6 +69,7 @@ namespace MovieInfoApplication
             return doWebRequest(url);
         }
 
+        //could move to it's own class
         private string doWebRequest(string url)
         {
             try
@@ -86,14 +85,11 @@ namespace MovieInfoApplication
                 response.Close();
 
                 return json;
-
             }
             catch(Exception e)
             {
                 throw new ApplicationException("Could not connect to Rotten Tomatoes.\n\n", e);
-            }
- 
+            } 
         }
-
     }
 }
