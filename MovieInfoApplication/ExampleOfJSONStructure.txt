@@ -1,5 +1,18 @@
 ﻿Here is the structure of the JSON that is recieved from Rotten Tomatoes
+ACTOR INFO
+{
+    "cast": [{
+        "id": "770692298",
+        "name": "Chris Pratt",
+        "characters": ["Peter Quill/Star-Lord"]
+    }, {
+        "id": "162660050",
+        "name": "Zoe Saldana",
+        "characters": ["Gamora"]
+    }, ...]}
 
+
+MOVIE INFO
 {
   "total": 2,
   "movies": [{
