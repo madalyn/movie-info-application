@@ -13,18 +13,17 @@ namespace MovieInfoApplication
     /// A class to configure the movie objects parsed
     /// from the recieved JSON
     /// </summary>
-    class MoviesImpl
+    class MoviesImpl //the class itself should probably deal with the JSON. Too much passed around right now
     {
         public List<Movie> createMoviesFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
             List<Movie> movieList = new List<Movie>();
-            //List<Actor> actors = createActorsFromJSON(getActorsJSON((int)t.id))
-            //movies is the attribute, title is the property
+
+            //"movies" and "title" come from JSON structure
             foreach (var t in jResults.movies)
             {
-                //for each one, create a movie object
-                //add to a list of movies;
+                //for each one, create a movie object & add to list
                 movieList.Add(new Movie((string)t.title, createActorsFromJSON(getActorsJSON((int)t.id)), (int)t.id));
             }
 
@@ -50,21 +49,13 @@ namespace MovieInfoApplication
         /// </summary>
         /// <param name="numTitles">the number of movies to get</param>
         /// <returns>the correct number of movies in a string of JSON</returns>
+        /// ********************use this
         public string getMoviesJSON(int numTitles)
         {
             string numString = numTitles.ToString();
             string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=" + numString + "&page=1&country=us&apikey=xyfqrbjvshc9vsupeht8dw2p";
-            WebRequest request = WebRequest.Create(url);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string json = reader.ReadToEnd();
 
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-
-            return json;
+            return doWebRequest(url);
         }
 
         /// <summary>
@@ -77,6 +68,12 @@ namespace MovieInfoApplication
         {
             string idString = id.ToString();
             string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" + idString + "/cast.json?apikey=xyfqrbjvshc9vsupeht8dw2p";
+
+            return doWebRequest(url);
+        }
+
+        private string doWebRequest(string url)
+        {
             WebRequest request = WebRequest.Create(url);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream dataStream = response.GetResponseStream();
