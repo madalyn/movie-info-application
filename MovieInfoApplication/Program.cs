@@ -20,12 +20,12 @@ namespace MovieInfoApplication
             //get 10 movies currently in theaters, give back the JSON (limit=10 var later)
             //perhaps do as user input if time
             //need a catch if no movies, or less than input number
-            string json = getMovieTitlesJSON(10);
+            string json = getMoviesJSON(10);
 
             //Console.WriteLine(json);
 
            
-            //dynamically make all 10 movies elsewhere            
+            //dynamically make all 10 movies elsewhere - C# properties           
             Movie guardians = new Movie("guardians",null);
             string title = guardians.getTitle();
             Console.WriteLine(title);
@@ -53,16 +53,29 @@ namespace MovieInfoApplication
         {
             dynamic jResults = JsonConvert.DeserializeObject(jsonText);
             List<string> titles = new List<string>();
+            List<Movie> movieList = new List<Movie>();
+
             foreach (var t in jResults.movies)
             {
                 titles.Add((string)t.title);
+                //for each one, create a movie object
+                //add to a list of movies
+                movieList.Add(new Movie((string)t.title, null));
+
+                
                 Console.WriteLine((string)t.title);
             }
             
             return titles;
         }
 
-        static string getMovieTitlesJSON(int numTitles)
+        /// <summary>
+        /// This function deals with getting the appropriate number
+        /// of movie objects in JSON form
+        /// </summary>
+        /// <param name="numTitles">the number of movies to get</param>
+        /// <returns>the correct number of movies in a string of JSON</returns>
+        static string getMoviesJSON(int numTitles)
         {
             string numString = numTitles.ToString();
             string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit="+numString+"&page=1&country=us&apikey=xyfqrbjvshc9vsupeht8dw2p";
