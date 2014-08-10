@@ -14,22 +14,13 @@ namespace MovieInfoApplication.MovieInfo
     {
         private string title;
         private List<Actor> actors;
+        private int rtid;
 
-        public Movie(string title, List<Actor> actors)
+        public Movie(string title, List<Actor> actors, int rtid)
         {
             this.title = title;
             this.actors = actors;
-            /*
-            title = "Guardians of the Galaxy TEST";
-
-            List<Actor> cast = new List<Actor>();
-            //each actor must have a name and in age in his/her constructor
-            Actor chrisPratt = new Actor();
-            Actor zoeSaldana = new Actor();
-            cast.Add(chrisPratt);
-            cast.Add(zoeSaldana);
-
-            actors = cast;*/
+            this.rtid = rtid;
         }
 
         /**
@@ -55,6 +46,15 @@ namespace MovieInfoApplication.MovieInfo
         public double getAverageAgeOfCast(List<Actor> cast)
         {
             return 1.0;
+        }
+
+        /// <summary>
+        /// Gets the movie's specific rotten tomatoes ID
+        /// </summary>
+        /// <returns>the ID</returns>
+        public int getRTID()
+        {
+            return rtid;
         }
     }
 }

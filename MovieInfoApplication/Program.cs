@@ -30,6 +30,7 @@ namespace MovieInfoApplication
             List<Movie> movies = createMoviesFromJSON(json);
             foreach(var movie in movies){
                 Console.WriteLine(movie.getTitle()+"!");
+                Console.WriteLine(movie.getRTID());
             }
            
                        
@@ -45,7 +46,7 @@ namespace MovieInfoApplication
             {
                 //for each one, create a movie object
                 //add to a list of movies
-                movieList.Add(new Movie((string)t.title, null));
+                movieList.Add(new Movie((string)t.title, null,(int)t.id));
             }
             
             return movieList;
