@@ -24,5 +24,10 @@ namespace MovieInfoApplication.MovieInfo
         {
             return age;
         }
+
+        public string getName()
+        {
+            return name;
+        }
     }
 }

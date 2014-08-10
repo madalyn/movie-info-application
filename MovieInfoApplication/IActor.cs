@@ -12,5 +12,6 @@ namespace MovieInfoApplication
          * Note: this will either be a class property or come straight from JSON
          * */
         int getAge();
+        string getName();
     }
 }

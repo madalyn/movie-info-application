@@ -20,36 +20,50 @@ namespace MovieInfoApplication
             //get 10 movies currently in theaters, give back the JSON (limit=10 var later)
             //perhaps do as user input if time
             //need a catch if no movies, or less than input number
-            string json = getMoviesJSON(5);
-
-            //Console.WriteLine(json);
-
-           
+            string moviesJSON = getMoviesJSON(5);
+                      
             //dynamically make all 10 movies elsewhere - C# properties           
+            List<Movie> movies = createMoviesFromJSON(moviesJSON);
 
-            List<Movie> movies = createMoviesFromJSON(json);
             foreach(var movie in movies){
                 Console.WriteLine(movie.getTitle()+"!");
                 Console.WriteLine(movie.getRTID());
-            }
-           
-                       
+
+                foreach (var actor in movie.getActorsInMovie())
+                {
+                    Console.WriteLine(actor.getName());
+                }
+                
+            }             
         }
 
         static List<Movie> createMoviesFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
             List<Movie> movieList = new List<Movie>();
-
+            //List<Actor> actors = createActorsFromJSON(getActorsJSON((int)t.id))
             //movies is the attribute, title is the property
             foreach (var t in jResults.movies)
             {
                 //for each one, create a movie object
-                //add to a list of movies
-                movieList.Add(new Movie((string)t.title, null,(int)t.id));
+                //add to a list of movies;
+                movieList.Add(new Movie((string)t.title, createActorsFromJSON(getActorsJSON((int)t.id)), (int)t.id));
             }
-            
+
             return movieList;
+        }
+
+        static List<Actor> createActorsFromJSON(string json)
+        {
+            dynamic jResults = JsonConvert.DeserializeObject(json);
+            List<Actor> castList = new List<Actor>();
+
+            foreach (var actor in jResults.cast)
+            {
+                castList.Add(new Actor((string)actor.name, 10));
+            }
+
+            return castList;
         }
 
         /// <summary>
