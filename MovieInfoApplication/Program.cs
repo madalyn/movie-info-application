@@ -20,53 +20,35 @@ namespace MovieInfoApplication
             //get 10 movies currently in theaters, give back the JSON (limit=10 var later)
             //perhaps do as user input if time
             //need a catch if no movies, or less than input number
-            string json = getMoviesJSON(10);
+            string json = getMoviesJSON(5);
 
             //Console.WriteLine(json);
 
            
             //dynamically make all 10 movies elsewhere - C# properties           
-            Movie guardians = new Movie("guardians",null);
-            string title = guardians.getTitle();
-            Console.WriteLine(title);
 
-            JObject movie1 = JsonConvert.DeserializeObject<JObject>(json);
-           // Console.WriteLine(movie1);
-
-            JSONParseDynamic(json);
+            List<Movie> movies = createMoviesFromJSON(json);
+            foreach(var movie in movies){
+                Console.WriteLine(movie.getTitle()+"!");
+            }
            
                        
         }
-        /*
-        static List<string> JSONParseObject(string jsonText)
-        {
-            JObject jResults = JObject.Parse(jsonText);
-            List<string> counties = new List<string>();
-            foreach (var county in jResults["total"])
-            {
-                counties.Add((string)county["name"]);
-            }
-            return counties;
-        }*/
 
-        static List<string> JSONParseDynamic(string jsonText)
+        static List<Movie> createMoviesFromJSON(string json)
         {
-            dynamic jResults = JsonConvert.DeserializeObject(jsonText);
-            List<string> titles = new List<string>();
+            dynamic jResults = JsonConvert.DeserializeObject(json);
             List<Movie> movieList = new List<Movie>();
 
+            //movies is the attribute, title is the property
             foreach (var t in jResults.movies)
             {
-                titles.Add((string)t.title);
                 //for each one, create a movie object
                 //add to a list of movies
                 movieList.Add(new Movie((string)t.title, null));
-
-                
-                Console.WriteLine((string)t.title);
             }
             
-            return titles;
+            return movieList;
         }
 
         /// <summary>
