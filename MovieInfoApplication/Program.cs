@@ -74,6 +74,29 @@ namespace MovieInfoApplication
             return json;
         }
 
+        /// <summary>
+        /// Takes in the movie's rotten tomatoes ID to do the query
+        /// for the correct cast
+        /// </summary>
+        /// <param name="id">the rotten tomatoes ID for the specific movie</param>
+        /// <returns>the correct raw json string</returns>
+        static string getActorsJSON(int id)
+        {
+            string idString = id.ToString();
+            string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" + idString + "/cast.json?apikey=xyfqrbjvshc9vsupeht8dw2p";
+            WebRequest request = WebRequest.Create(url);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string json = reader.ReadToEnd();
+
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+
+            return json;
+        }
+
         ///Configure Movies & Number to return --> move to new class later (right now to 10)
         void createMovieList()
         {
