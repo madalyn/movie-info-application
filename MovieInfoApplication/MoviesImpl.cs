@@ -27,11 +27,14 @@ namespace MovieInfoApplication
             dynamic jResults = JsonConvert.DeserializeObject(json);
             List<Movie> movieList = new List<Movie>();
 
-            //"movies" and "title" come from JSON structure
-            foreach (var movie in jResults.movies)
+            if (jResults.movies != null)
             {
-                //for each one, create a movie object & add to list; use movie id to generate actors
-                movieList.Add(new Movie((string)movie.title, createActorsFromJSON(getActorsJSON((int)movie.id)), (int)movie.id));
+                //"movies" and "title" come from JSON structure
+                foreach (var movie in jResults.movies)
+                {
+                    //for each one, create a movie object & add to list; use movie id to generate actors
+                    movieList.Add(new Movie((string)movie.title, createActorsFromJSON(getActorsJSON((int)movie.id)), (int)movie.id));
+                }
             }
 
             return movieList;
@@ -89,8 +92,9 @@ namespace MovieInfoApplication
             catch(Exception e)
             {
                 //throw new ApplicationException("Could not connect to Rotten Tomatoes.\n\n", e);
+                //print out more appropriate message
                 Console.WriteLine("Could not connect to Rotten Tomatoes.\n\n");
-                Environment.Exit(1);
+                //Environment.Exit(1);
                 return "{}";
             } 
         }
