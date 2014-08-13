@@ -47,16 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MoviesImpl.cs" />
-    <Compile Include="IMovie.cs" />
-    <Compile Include="IActor.cs" />
-    <Compile Include="MovieInfo\Actor.cs" />
-    <Compile Include="MovieInfo\Movie.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="src\MoviesImpl.cs" />
+    <Compile Include="src\IMovie.cs" />
+    <Compile Include="src\IActor.cs" />
+    <Compile Include="src\MovieInfo\Actor.cs" />
+    <Compile Include="src\MovieInfo\Movie.cs" />
+    <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\requests\WebRequester.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExampleOfJSONStructure.txt" />
+    <Content Include="docs\ExampleOfJSONStructure.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

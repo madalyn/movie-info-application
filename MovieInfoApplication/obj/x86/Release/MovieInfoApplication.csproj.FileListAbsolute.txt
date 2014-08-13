@@ -12,5 +12,4 @@ C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\M
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.exe
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.pdb
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.dll
-C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.pdb
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.xml
