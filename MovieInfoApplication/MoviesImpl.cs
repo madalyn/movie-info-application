@@ -37,7 +37,7 @@ namespace MovieInfoApplication
             return movieList;
         }
 
-        // uses the JSON string to create actor objects for that movies entire cast
+        // uses the JSON string to create actor objects for that movie's entire cast
         private List<Actor> createActorsFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
@@ -88,7 +88,10 @@ namespace MovieInfoApplication
             }
             catch(Exception e)
             {
-                throw new ApplicationException("Could not connect to Rotten Tomatoes.\n\n", e);
+                //throw new ApplicationException("Could not connect to Rotten Tomatoes.\n\n", e);
+                Console.WriteLine("Could not connect to Rotten Tomatoes.\n\n");
+                Environment.Exit(1);
+                return "{}";
             } 
         }
     }
