@@ -61,7 +61,7 @@ namespace MovieInfoApplication
             string numString = numTitles.ToString();
             string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=" + numString + "&page=1&country=us&apikey=xyfqrbjvshc9vsupeht8dw2p";
 
-            return doWebRequest(url);
+            return WebRequester.getInstance().doWebRequest(url);
         }
 
         // using the movie's rotten tomatoes ID, query for the json of the entire cast
@@ -70,12 +70,15 @@ namespace MovieInfoApplication
             string idString = id.ToString();
             string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" + idString + "/cast.json?apikey=xyfqrbjvshc9vsupeht8dw2p";
 
-            return doWebRequest(url);
+            return WebRequester.getInstance().doWebRequest(url);
         }
 
-        private string doWebRequest(string url){
-            WebRequester request = new WebRequester();
-            return request.doWebRequest(url);
+        public string getActorAge()
+        {
+            string url = "http://api.freebase.com/api/service/search?query=Smith&type=/people/person";
+            Console.WriteLine(WebRequester.getInstance().doWebRequest(url));
+            return WebRequester.getInstance().doWebRequest(url);
         }
+
     }
 }

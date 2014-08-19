@@ -9,7 +9,24 @@ namespace MovieInfoApplication.requests
 {
     public class WebRequester
     {
-        //could move to it's own class
+        private static WebRequester instance;
+
+        private WebRequester()
+        {
+            //the singleton class constuctor
+
+        }
+
+        public static WebRequester getInstance()
+        {
+            if (instance == null)
+            {
+                instance = new WebRequester();
+            }
+
+            return instance;
+        }
+
         public string doWebRequest(string url)
         {
             try
@@ -30,7 +47,7 @@ namespace MovieInfoApplication.requests
             {
                 //throw new ApplicationException("Could not connect to Rotten Tomatoes.\n\n", e);
                 //print out more appropriate message
-                Console.WriteLine("Could not connect to Rotten Tomatoes.\n\n");
+                Console.WriteLine("Could not connect to url.\n\n");
                 //Environment.Exit(1);
                 return "{}";
             }

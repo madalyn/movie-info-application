@@ -36,7 +36,7 @@ namespace MovieInfoApplication
             //need a catch if no movies, or less than input number  
         
             //change back to numMovies, currently going over Rotten Tomatoes rate limit of 5 calls/second
-            List<Movie> movies = impl.getMovies(5); //improve speed
+            List<Movie> movies = impl.getMovies(numMovies); //improve speed
 
             int i = 1;
             foreach(var movie in movies){
@@ -44,7 +44,9 @@ namespace MovieInfoApplication
                 Console.WriteLine("Average Age of Cast: " + movie.getAverageAgeOfCast());
                 Console.WriteLine("");
                 i++;              
-            }             
+            }
+
+            impl.getActorAge();
         }
 
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e) {
