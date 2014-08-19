@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.IO;
 using MovieInfoApplication.requests;
+using Newtonsoft.Json.Linq;
 
 namespace MovieInfoApplication
 {
@@ -75,8 +76,17 @@ namespace MovieInfoApplication
 
         public string getActorAge()
         {
-            string url = "http://api.freebase.com/api/service/search?query=Smith&type=/people/person";
-            Console.WriteLine(WebRequester.getInstance().doWebRequest(url));
+            string url = "https://www.googleapis.com/freebase/v1/search?query=Will%20Smith&type=/film/actor&output=(/people/person/age)";
+            //Console.WriteLine(WebRequester.getInstance().doWebRequest(url));
+
+            dynamic jResults = JsonConvert.DeserializeObject(WebRequester.getInstance().doWebRequest(url));
+            //check is it the same name
+            //check has age
+            //check all these properties are valid
+            int age = (int)jResults.result[0].output["/people/person/age"]["/people/person/age"][0];
+
+            Console.WriteLine(age);
+            
             return WebRequester.getInstance().doWebRequest(url);
         }
 
