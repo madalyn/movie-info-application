@@ -32,6 +32,7 @@ namespace MovieInfoApplication.MovieInfo
         {
             double ageTotal = 0.0;
 
+            //need to sum up actors who's ages weren't included and subtract that from the count
             foreach (var actor in Actors)
             {
                 ageTotal += actor.Age;

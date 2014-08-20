@@ -50,7 +50,7 @@ namespace MovieInfoApplication
 
             foreach (var actor in jResults.cast)
             {
-                castList.Add(new Actor((string)actor.name, 10));
+                castList.Add(new Actor((string)actor.name, (int)getActorAge((string)actor.name)));
             }
 
             return castList;
@@ -74,29 +74,35 @@ namespace MovieInfoApplication
             return WebRequester.getInstance().doWebRequest(url);
         }
 
-        public string getActorAge()
+        public int getActorAge(string name)
         {
-            //string name; //actor's name
-            string name1 = "Robin Williams";
-            string url = "https://www.googleapis.com/freebase/v1/search?query="+name1+"&type=/film/actor&output=(/people/person/age)";
-            //Console.WriteLine(WebRequester.getInstance().doWebRequest(url));
+            string url = "https://www.googleapis.com/freebase/v1/search?query="+name+"&type=/film/actor&output=(/people/person/age)";
 
             dynamic jResults = JsonConvert.DeserializeObject(WebRequester.getInstance().doWebRequest(url));
-            //check is it the same name
-            //check has age
-            //check all these properties are valid
-            string name2 = (string)jResults.result[0]["name"];
-            int age = (int)jResults.result[0].output["/people/person/age"]["/people/person/age"][0];
 
-            Console.WriteLine(name2);
-            Console.WriteLine(age);
-
-            if (name1.Equals(name2))
+            if (jResults == "{}" || jResults == null)
             {
-                Console.WriteLine("YES!");
+                //return non-valid age to check elsewhere
+                //print out actors who's ages were unknown
+                return -1;
             }
-            
-            return WebRequester.getInstance().doWebRequest(url);
+            else
+            {
+                string jName = (string)jResults.result[0]["name"];
+                int age = (int)jResults.result[0].output["/people/person/age"]["/people/person/age"][0];
+           
+
+                Console.WriteLine(jName);
+                Console.WriteLine(age);
+
+                //check to make sure first result (most confident) is still same person
+                if (name.Equals(jName))
+                {
+                    Console.WriteLine("YES!");
+                }
+
+                return age;//WebRequester.getInstance().doWebRequest(url); 
+            }
         }
 
     }

@@ -46,7 +46,7 @@ namespace MovieInfoApplication
                 i++;              
             }
 
-            impl.getActorAge();
+        
         }
 
         static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e) {
