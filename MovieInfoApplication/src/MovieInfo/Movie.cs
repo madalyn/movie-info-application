@@ -12,42 +12,15 @@ namespace MovieInfoApplication.MovieInfo
     //the title and castlist must be known at this time
     public class Movie : IMovie
     {
-        private string title;
-        private List<Actor> actors;
-        private int rtid;
+        public string Title { get; set; }
+        public List<Actor> Actors { get; set; }
+        public int RottenTomatoesID { get; set; }
 
-        public Movie(string title, List<Actor> actors, int rtid)
+        public Movie(string title, List<Actor> actors, int rottenTomatoesID)
         {
-            this.title = title;
-            this.actors = actors;
-            this.rtid = rtid;
-        }
-
-        /// <summary>
-        /// Method to return the title of the movie
-        /// </summary>
-        /// <returns></returns>
-        public string getTitle()
-        {
-            return title;
-        }
-
-        /// <summary>
-        /// Method to return a list of Actors in the movie
-        /// </summary>
-        /// <returns></returns>
-        public List<Actor> getActorsInMovie() 
-        {
-            return actors;
-        }
-
-        /// <summary>
-        /// Gets the movie's specific rotten tomatoes ID
-        /// </summary>
-        /// <returns>the ID</returns>
-        public int getRTID()
-        {
-            return rtid;
+            this.Title = title;
+            this.Actors = actors;
+            this.RottenTomatoesID = rottenTomatoesID;
         }
 
         /// <summary>
@@ -57,15 +30,14 @@ namespace MovieInfoApplication.MovieInfo
         /// <returns></returns>
         public double getAverageAgeOfCast()
         {
-            List<Actor> cast = getActorsInMovie();
             double ageTotal = 0.0;
 
-            foreach (var actor in cast)
+            foreach (var actor in Actors)
             {
-                ageTotal += actor.getAge();
+                ageTotal += actor.Age;
             }
 
-            return ageTotal / (cast.Count);
+            return ageTotal / (Actors.Count);
         }
     }
 }

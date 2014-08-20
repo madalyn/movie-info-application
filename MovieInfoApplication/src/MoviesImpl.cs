@@ -76,16 +76,25 @@ namespace MovieInfoApplication
 
         public string getActorAge()
         {
-            string url = "https://www.googleapis.com/freebase/v1/search?query=Will%20Smith&type=/film/actor&output=(/people/person/age)";
+            //string name; //actor's name
+            string name1 = "Robin Williams";
+            string url = "https://www.googleapis.com/freebase/v1/search?query="+name1+"&type=/film/actor&output=(/people/person/age)";
             //Console.WriteLine(WebRequester.getInstance().doWebRequest(url));
 
             dynamic jResults = JsonConvert.DeserializeObject(WebRequester.getInstance().doWebRequest(url));
             //check is it the same name
             //check has age
             //check all these properties are valid
+            string name2 = (string)jResults.result[0]["name"];
             int age = (int)jResults.result[0].output["/people/person/age"]["/people/person/age"][0];
 
+            Console.WriteLine(name2);
             Console.WriteLine(age);
+
+            if (name1.Equals(name2))
+            {
+                Console.WriteLine("YES!");
+            }
             
             return WebRequester.getInstance().doWebRequest(url);
         }

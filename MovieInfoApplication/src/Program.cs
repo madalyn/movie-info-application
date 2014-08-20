@@ -40,7 +40,7 @@ namespace MovieInfoApplication
 
             int i = 1;
             foreach(var movie in movies){
-                Console.WriteLine(i + ".)" + movie.getTitle());
+                Console.WriteLine(i + ".)" + movie.Title);
                 Console.WriteLine("Average Age of Cast: " + movie.getAverageAgeOfCast());
                 Console.WriteLine("");
                 i++;              

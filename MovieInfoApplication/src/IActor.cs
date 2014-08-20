@@ -8,15 +8,15 @@ namespace MovieInfoApplication
     public interface IActor
     {        
         /// <summary>
-        /// A Method to return the actor's name
+        /// The property to access the actor's name
         /// </summary>
         /// <returns></returns>
-        string getName();
-
+        string Name { get; set; }
+        
         /// <summary>
-        /// A Method to return the age of this actor
+        /// The property to access the age of this actor
         /// </summary>
         /// <returns></returns>
-        int getAge();
+        int Age { get; set; }
     }
 }

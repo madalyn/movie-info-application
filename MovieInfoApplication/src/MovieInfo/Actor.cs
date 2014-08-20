@@ -7,31 +7,14 @@ namespace MovieInfoApplication.MovieInfo
 {
     public class Actor : IActor
     {
-        private string name;
-        private int age;
+        public string Name { get; set; }
+        public int Age { get; set; }
 
         public Actor(string name, int age)
         {
-            this.name = name;
-            this.age = age;
+            this.Name = name;
+            this.Age = age;
         }
 
-        /// <summary>
-        /// A Method to return the actor's name
-        /// </summary>
-        /// <returns></returns>
-        public string getName()
-        {
-            return name;
-        }
-
-        /// <summary>
-        /// A Method to return the age of this actor
-        /// </summary>
-        /// <returns></returns>
-        public int getAge()
-        {
-            return age;
-        }
     }
 }

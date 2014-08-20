@@ -9,22 +9,22 @@ namespace MovieInfoApplication
     public interface IMovie
     {
         /// <summary>
-        /// Method to return the title of the movie
+        /// Property to access the title of the movie
         /// </summary>
         /// <returns></returns>
-        string getTitle();
-
+        string Title { get; set; }
+        
         /// <summary>
-        /// Method to return a list of Actors in the movie
+        /// Property to access a list of Actors in the movie
         /// </summary>
         /// <returns></returns>
-        List<Actor> getActorsInMovie();
+        List<Actor> Actors { get; set; }
 
         /// <summary>
-        /// Gets the movie's specific rotten tomatoes ID
+        /// Property to access movie's specific rotten tomatoes ID
         /// </summary>
         /// <returns>the ID</returns>
-        int getRTID();
+        int RottenTomatoesID { get; set; }
 
         /// <summary>
         /// Method that gives back the average age of the cast
