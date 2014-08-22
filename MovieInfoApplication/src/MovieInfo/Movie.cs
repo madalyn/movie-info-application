@@ -31,14 +31,24 @@ namespace MovieInfoApplication.MovieInfo
         public double getAverageAgeOfCast()
         {
             double ageTotal = 0.0;
+            int noAgeTotal = 0;
 
             //need to sum up actors who's ages weren't included and subtract that from the count
             foreach (var actor in Actors)
             {
-                ageTotal += actor.Age;
+                if (actor.Age < 0)
+                {
+                    Console.WriteLine(actor.Name + " was not included in the total.");
+                    noAgeTotal++;
+                }
+                else
+                {
+                    ageTotal += actor.Age;
+                }
+                
             }
 
-            return ageTotal / (Actors.Count);
+            return ageTotal / (Actors.Count - noAgeTotal);
         }
     }
 }

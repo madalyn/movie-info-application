@@ -76,34 +76,44 @@ namespace MovieInfoApplication
 
         public int getActorAge(string name)
         {
-            string url = "https://www.googleapis.com/freebase/v1/search?query="+name+"&type=/film/actor&output=(/people/person/age)";
+            string url = "https://www.googleapis.com/freebase/v1/search?query="+name+"&type=/film/actor&output=(/people/person/age)&limit=1";
 
             dynamic jResults = JsonConvert.DeserializeObject(WebRequester.getInstance().doWebRequest(url));
+            dynamic result = null;
 
-            if (jResults == "{}" || jResults == null)
+            //if we get back an array, make sure there is data; 
+            if (jResults.result != null && jResults.result.Type == JTokenType.Array && ((JArray)jResults.result).Count > 0)
+            {
+                result = jResults.result[0];
+            }
+            //if not, make sure it is at least an object
+            else if (jResults.result != null && jResults.result.Type == JTokenType.Object)
+            {
+                result = jResults.result;
+            }
+
+            //get the actors age based on the json
+            if (result == null || result.output == null || result.output["/people/person/age"] == null ||
+                result.output["/people/person/age"]["/people/person/age"] == null)
             {
                 //return non-valid age to check elsewhere
-                //print out actors who's ages were unknown
                 return -1;
             }
             else
             {
-                string jName = (string)jResults.result[0]["name"];
-                int age = (int)jResults.result[0].output["/people/person/age"]["/people/person/age"][0];
-           
-
-                Console.WriteLine(jName);
-                Console.WriteLine(age);
-
+                string jName = (string)result["name"];
+                                
                 //check to make sure first result (most confident) is still same person
                 if (name.Equals(jName))
                 {
-                    Console.WriteLine("YES!");
+                    return (int)result.output["/people/person/age"]["/people/person/age"][0];
                 }
-
-                return age;//WebRequester.getInstance().doWebRequest(url); 
+                else
+                {
+                    //the most confident result is the wrong person, therefor his age could not be found
+                    return -1;
+                }   
             }
         }
-
     }
 }
