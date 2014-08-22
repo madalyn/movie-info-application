@@ -74,6 +74,12 @@ namespace MovieInfoApplication
             return WebRequester.getInstance().doWebRequest(url);
         }
 
+        /// <summary>
+        /// Gets the age of an actor from freebase by using that
+        /// actor's name.
+        /// </summary>
+        /// <param name="name">The name of the actor</param>
+        /// <returns>the age if it is found; -1 if no age</returns>
         public int getActorAge(string name)
         {
             string url = "https://www.googleapis.com/freebase/v1/search?query="+name+"&type=/film/actor&output=(/people/person/age)&limit=1";
@@ -93,27 +99,21 @@ namespace MovieInfoApplication
             }
 
             //get the actors age based on the json
-            if (result == null || result.output == null || result.output["/people/person/age"] == null ||
-                result.output["/people/person/age"]["/people/person/age"] == null)
+            //make sure there is data for age & name
+            //check all the way down; because as soon as you try to index a null value it breaks
+            if (result != null && result.output != null && result.output["/people/person/age"] != null &&
+                result.output["/people/person/age"]["/people/person/age"] != null && 
+                result["name"] != null)
             {
-                //return non-valid age to check elsewhere
-                return -1;
-            }
-            else
-            {
-                string jName = (string)result["name"];
-                                
                 //check to make sure first result (most confident) is still same person
-                if (name.Equals(jName))
+                if (name.Equals((string)result["name"]))
                 {
                     return (int)result.output["/people/person/age"]["/people/person/age"][0];
                 }
-                else
-                {
-                    //the most confident result is the wrong person, therefor his age could not be found
-                    return -1;
-                }   
             }
+               
+            //the most confident result is the wrong person or age could not be found, set invalid age
+            return -1;
         }
     }
 }
