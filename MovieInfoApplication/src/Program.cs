@@ -34,7 +34,7 @@ namespace MovieInfoApplication
                 }
             
                 MoviesImpl impl = new MoviesImpl(); 
-                List<Movie> movies = impl.getMovies(numMovies); 
+                List<IMovie> movies = impl.getMovies(numMovies); 
 
                 int i = 1;
                 foreach(var movie in movies){

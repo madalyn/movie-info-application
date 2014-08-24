@@ -20,17 +20,17 @@ namespace MovieInfoApplication
         private const string FREEBASE_API_KEY = "AIzaSyAwbCTaa97y8hJsjiVxwKYVvRcwk9z1G6U";
         private const string ROTTEN_TOMATOES_API_KEY = "xyfqrbjvshc9vsupeht8dw2p";
 
-        public List<Movie> getMovies(int numTitles)
+        public List<IMovie> getMovies(int numTitles)
         {
             string moviesJSON = getMoviesJSON(numTitles);
             return createMoviesFromJSON(moviesJSON);
         }
 
         // using the JSON string, creates the movie objects
-        private List<Movie> createMoviesFromJSON(string json)
+        private List<IMovie> createMoviesFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
-            List<Movie> movieList = new List<Movie>();
+            List<IMovie> movieList = new List<IMovie>();
 
             if (jResults.movies != null)
             {
@@ -46,10 +46,10 @@ namespace MovieInfoApplication
         }
 
         // uses the JSON string to create actor objects for that movie's entire cast
-        private List<Actor> createActorsFromJSON(string json)
+        private List<IActor> createActorsFromJSON(string json)
         {
             dynamic jResults = JsonConvert.DeserializeObject(json);
-            List<Actor> castList = new List<Actor>();
+            List<IActor> castList = new List<IActor>();
 
             foreach (var actor in jResults.cast)
             {
@@ -63,7 +63,8 @@ namespace MovieInfoApplication
         private string getMoviesJSON(int numTitles)
         {
             string numString = numTitles.ToString();
-            string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=" + numString + "&page=1&country=us&apikey=" + ROTTEN_TOMATOES_API_KEY;
+            string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=" 
+                + numString + "&page=1&country=us&apikey=" + ROTTEN_TOMATOES_API_KEY;
 
             return WebRequester.getInstance().doWebRequest(url);
         }
@@ -72,7 +73,8 @@ namespace MovieInfoApplication
         private string getActorsJSON(int id)
         {
             string idString = id.ToString();
-            string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" + idString + "/cast.json?apikey=" + ROTTEN_TOMATOES_API_KEY;
+            string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" 
+                + idString + "/cast.json?apikey=" + ROTTEN_TOMATOES_API_KEY;
 
             return WebRequester.getInstance().doWebRequest(url);
         }
@@ -85,7 +87,8 @@ namespace MovieInfoApplication
         /// <returns>the age if it is found; -1 if no age</returns>
         public int getActorAge(string name)
         {
-            string url = "https://www.googleapis.com/freebase/v1/search?query=" + name + "&type=/film/actor&output=(/people/person/age)&limit=1&key=" + FREEBASE_API_KEY;
+            string url = "https://www.googleapis.com/freebase/v1/search?query=" 
+                + name + "&type=/film/actor&output=(/people/person/age)&limit=1&key=" + FREEBASE_API_KEY;
 
             dynamic jResults = JsonConvert.DeserializeObject(WebRequester.getInstance().doWebRequest(url));
             dynamic result = null;

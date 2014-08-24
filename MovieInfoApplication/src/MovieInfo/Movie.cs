@@ -13,10 +13,10 @@ namespace MovieInfoApplication.MovieInfo
     public class Movie : IMovie
     {
         public string Title { get; set; }
-        public List<Actor> Actors { get; set; }
+        public List<IActor> Actors { get; set; }
         public int RottenTomatoesID { get; set; }
 
-        public Movie(string title, List<Actor> actors, int rottenTomatoesID)
+        public Movie(string title, List<IActor> actors, int rottenTomatoesID)
         {
             this.Title = title;
             this.Actors = actors;

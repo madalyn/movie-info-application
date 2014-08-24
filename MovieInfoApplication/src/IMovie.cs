@@ -18,7 +18,7 @@ namespace MovieInfoApplication
         /// Property to access a list of Actors in the movie
         /// </summary>
         /// <returns></returns>
-        List<Actor> Actors { get; set; }
+        List<IActor> Actors { get; set; }
 
         /// <summary>
         /// Property to access movie's specific rotten tomatoes ID
