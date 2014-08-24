@@ -33,12 +33,8 @@ namespace MovieInfoApplication
                     Console.WriteLine("Plese enter a valid number. For example: 1, 5, or 10.");
                 }
             
-                MoviesImpl impl = new MoviesImpl();
-                //get # movies currently in theaters, give back the movies
-                //need a catch if no movies, or less than input number  
-        
-                //change back to numMovies, currently going over Rotten Tomatoes rate limit of 5 calls/second
-                List<Movie> movies = impl.getMovies(numMovies); //improve speed
+                MoviesImpl impl = new MoviesImpl(); 
+                List<Movie> movies = impl.getMovies(numMovies); 
 
                 int i = 1;
                 foreach(var movie in movies){

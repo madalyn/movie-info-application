@@ -17,6 +17,9 @@ namespace MovieInfoApplication
     /// </summary>
     class MoviesImpl
     {
+        private const string FREEBASE_API_KEY = "AIzaSyAwbCTaa97y8hJsjiVxwKYVvRcwk9z1G6U";
+        private const string ROTTEN_TOMATOES_API_KEY = "xyfqrbjvshc9vsupeht8dw2p";
+
         public List<Movie> getMovies(int numTitles)
         {
             string moviesJSON = getMoviesJSON(numTitles);
@@ -36,7 +39,6 @@ namespace MovieInfoApplication
                 {
                     //for each one, create a movie object & add to list; use movie id to generate actors
                     movieList.Add(new Movie((string)movie.title, createActorsFromJSON(getActorsJSON((int)movie.id)), (int)movie.id));
-                    //createActorsFromJSON(getActorsJSON((int)movie.id))
                 }
             }
 
@@ -61,7 +63,7 @@ namespace MovieInfoApplication
         private string getMoviesJSON(int numTitles)
         {
             string numString = numTitles.ToString();
-            string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=" + numString + "&page=1&country=us&apikey=xyfqrbjvshc9vsupeht8dw2p";
+            string url = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=" + numString + "&page=1&country=us&apikey=" + ROTTEN_TOMATOES_API_KEY;
 
             return WebRequester.getInstance().doWebRequest(url);
         }
@@ -70,7 +72,7 @@ namespace MovieInfoApplication
         private string getActorsJSON(int id)
         {
             string idString = id.ToString();
-            string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" + idString + "/cast.json?apikey=xyfqrbjvshc9vsupeht8dw2p";
+            string url = "http://api.rottentomatoes.com/api/public/v1.0/movies/" + idString + "/cast.json?apikey=" + ROTTEN_TOMATOES_API_KEY;
 
             return WebRequester.getInstance().doWebRequest(url);
         }
@@ -83,7 +85,7 @@ namespace MovieInfoApplication
         /// <returns>the age if it is found; -1 if no age</returns>
         public int getActorAge(string name)
         {
-            string url = "https://www.googleapis.com/freebase/v1/search?query=" + name + "&type=/film/actor&output=(/people/person/age)&limit=1&key=AIzaSyAwbCTaa97y8hJsjiVxwKYVvRcwk9z1G6U";
+            string url = "https://www.googleapis.com/freebase/v1/search?query=" + name + "&type=/film/actor&output=(/people/person/age)&limit=1&key=" + FREEBASE_API_KEY;
 
             dynamic jResults = JsonConvert.DeserializeObject(WebRequester.getInstance().doWebRequest(url));
             dynamic result = null;
