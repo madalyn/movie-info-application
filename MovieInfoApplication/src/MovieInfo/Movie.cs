@@ -38,7 +38,7 @@ namespace MovieInfoApplication.MovieInfo
             {
                 if (actor.Age < 0)
                 {
-                    Console.WriteLine(actor.Name + " was not included in the total.");
+                    //Console.WriteLine(actor.Name + " was not included in the total.");
                     noAgeTotal++;
                 }
                 else
@@ -48,6 +48,7 @@ namespace MovieInfoApplication.MovieInfo
                 
             }
 
+            Console.WriteLine(noAgeTotal + " out of " + Actors.Count + " actors were not included");
             return ageTotal / (Actors.Count - noAgeTotal);
         }
     }

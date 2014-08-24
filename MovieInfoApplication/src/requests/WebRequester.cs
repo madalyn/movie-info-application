@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 namespace MovieInfoApplication.requests
 {
     public class WebRequester
     {
         private static WebRequester instance;
+        private int failures = 0;
 
         private WebRequester()
         {
             //the singleton class constuctor
-
         }
 
         public static WebRequester getInstance()
@@ -29,10 +30,22 @@ namespace MovieInfoApplication.requests
 
         public string doWebRequest(string url)
         {
+            WebRequest request = WebRequest.Create(url);
+            HttpWebResponse response = null;
+            HttpStatusCode status;
             try
             {
-                WebRequest request = WebRequest.Create(url);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                response = (HttpWebResponse)request.GetResponse();
+                status = response.StatusCode;
+            }
+            catch (Exception e)
+            {
+                status = HttpStatusCode.Forbidden;
+            }
+
+            if (status == HttpStatusCode.OK)
+            {
+                failures = 0;
                 Stream dataStream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(dataStream);
                 string json = reader.ReadToEnd();
@@ -43,12 +56,17 @@ namespace MovieInfoApplication.requests
 
                 return json;
             }
-            catch (Exception e)
+            else if (failures < 2)
             {
-                //throw new ApplicationException("Could not connect to Rotten Tomatoes.\n\n", e);
+                failures++;
+                Thread.Sleep(1000);
+                return doWebRequest(url);
+            }
+            else
+            {
+                failures = 0;
                 //print out more appropriate message
-                Console.WriteLine("Could not connect to url.\n\n");
-                //Environment.Exit(1);
+                Console.WriteLine("Could not connect to " + url + "\n\n");
                 return "{}";
             }
         }

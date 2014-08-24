@@ -36,6 +36,7 @@ namespace MovieInfoApplication
                 {
                     //for each one, create a movie object & add to list; use movie id to generate actors
                     movieList.Add(new Movie((string)movie.title, createActorsFromJSON(getActorsJSON((int)movie.id)), (int)movie.id));
+                    //createActorsFromJSON(getActorsJSON((int)movie.id))
                 }
             }
 
@@ -82,7 +83,7 @@ namespace MovieInfoApplication
         /// <returns>the age if it is found; -1 if no age</returns>
         public int getActorAge(string name)
         {
-            string url = "https://www.googleapis.com/freebase/v1/search?query="+name+"&type=/film/actor&output=(/people/person/age)&limit=1";
+            string url = "https://www.googleapis.com/freebase/v1/search?query=" + name + "&type=/film/actor&output=(/people/person/age)&limit=1&key=AIzaSyAwbCTaa97y8hJsjiVxwKYVvRcwk9z1G6U";
 
             dynamic jResults = JsonConvert.DeserializeObject(WebRequester.getInstance().doWebRequest(url));
             dynamic result = null;
