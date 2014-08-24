@@ -11,13 +11,13 @@ namespace MovieInfoApplication
         /// <summary>
         /// Property to access the title of the movie
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the movie's title</returns>
         string Title { get; set; }
         
         /// <summary>
         /// Property to access a list of Actors in the movie
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the movie's cast</returns>
         List<IActor> Actors { get; set; }
 
         /// <summary>
@@ -27,10 +27,9 @@ namespace MovieInfoApplication
         int RottenTomatoesID { get; set; }
 
         /// <summary>
-        /// Method that gives back the average age of the cast
-        /// Note: this will this class's function got get the cast list
+        /// Method that calculates the average age of the movie's cast
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the average age of the cast (only including the actors whose names could be found).</returns>
         double getAverageAgeOfCast();
     }
 }

@@ -15,9 +15,10 @@ namespace MovieInfoApplication.requests
 
         private WebRequester()
         {
-            //the singleton class constuctor
+            // the singleton class constuctor
         }
 
+        // return the WebRequester instance; making one if necessary
         public static WebRequester getInstance()
         {
             if (instance == null)
@@ -28,11 +29,18 @@ namespace MovieInfoApplication.requests
             return instance;
         }
 
+        /// <summary>
+        /// perform the web request for the desired url
+        /// </summary>
+        /// <param name="url">the url to make a request to</param>
+        /// <returns>the contents of the response (JSON)</returns>
         public string doWebRequest(string url)
         {
             WebRequest request = WebRequest.Create(url);
             HttpWebResponse response = null;
             HttpStatusCode status;
+
+            // get the status, if there is an exception set status
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
@@ -43,6 +51,8 @@ namespace MovieInfoApplication.requests
                 status = HttpStatusCode.Forbidden;
             }
 
+            // if the status is good then read it 
+            // otherwise, try again up to 2 times before giving up
             if (status == HttpStatusCode.OK)
             {
                 failures = 0;
@@ -59,13 +69,15 @@ namespace MovieInfoApplication.requests
             else if (failures < 2)
             {
                 failures++;
+                // it may have failed because of a call limit
+                // wait then try again
                 Thread.Sleep(1000);
                 return doWebRequest(url);
             }
             else
             {
                 failures = 0;
-                //print out more appropriate message
+                // print out appropriate message
                 Console.WriteLine("Could not connect to " + url + "\n\n");
                 return "{}";
             }

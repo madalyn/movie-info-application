@@ -14,44 +14,42 @@ namespace MovieInfoApplication
     class Program
     {
         static void Main(string[] args)
-        {
-            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionTrapper;
-            int numMovies = -1;
-
-            do
-            {
-                Console.WriteLine("How many of the top movies would you like to know about?");
-                Console.Write("Number of Movies: ");
-                string input = Console.ReadLine();
+        {       
+            Console.WriteLine("How many of the top movies would you like to know about?");
+            Console.Write("Number of Movies: ");
+            string input = Console.ReadLine();
+            int numMovies;
                 
-                if (int.TryParse(input, out numMovies))
+            //deal with the user's input from the console
+            if (int.TryParse(input, out numMovies))
+            {
+                if ((int)numMovies == 1)
                 {
-                    Console.WriteLine("\nThe top " + numMovies + " movie currently in theaters are:\n");
+                    Console.WriteLine("\nThe top movie currently in theaters is:\n");
                 }
                 else
                 {
-                    Console.WriteLine("Plese enter a valid number. For example: 1, 5, or 10.");
+                    Console.WriteLine("\nThe top " + numMovies + " movies currently in theaters are:\n");
                 }
+            }
+            else
+            {
+                Console.WriteLine("Plese enter a valid number. For example: 1, 5, or 10.");
+            }
             
-                MoviesImpl impl = new MoviesImpl(); 
-                List<IMovie> movies = impl.getMovies(numMovies); 
+            //get the top movies based on the user's input
+            MoviesImpl impl = new MoviesImpl(); 
+            List<IMovie> movies = impl.getMovies(numMovies); 
 
-                int i = 1;
-                foreach(var movie in movies){
-                    Console.WriteLine(i + ".)" + movie.Title);
-                    Console.WriteLine("Average Age of Cast: " + movie.getAverageAgeOfCast());
-                    Console.WriteLine("");
-                    i++;              
-                }
-
-            } while (true);
-        }
-
-        static void UnhandledExceptionTrapper(object sender, UnhandledExceptionEventArgs e) {
-            Console.WriteLine(e.ExceptionObject.ToString());
-            Console.WriteLine("Press Enter to continue");
-            Console.ReadLine();
-            Environment.Exit(1);
+            int i = 1;
+            //print out the movies and their info
+            foreach (var movie in movies)
+            {
+                Console.WriteLine(i + ".)" + movie.Title);
+                Console.WriteLine("Average Age of Cast: " + movie.getAverageAgeOfCast());
+                Console.WriteLine("");
+                i++;
+            }
         }
     }
 }
