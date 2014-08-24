@@ -13,3 +13,7 @@ C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Movie
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.pdb
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.dll
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\Newtonsoft.Json.xml
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.exe.manifest
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Release\MovieInfoApplication.application
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.exe.manifest
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Release\MovieInfoApplication.application

@@ -4,3 +4,7 @@ C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\Newtons
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Debug\MovieInfoApplication.exe
 C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Debug\MovieInfoApplication.pdb
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\MovieInfoApplication.exe.manifest
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\bin\Debug\MovieInfoApplication.application
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Debug\MovieInfoApplication.exe.manifest
+C:\Users\Madalyn\git\MovieInfoApplication\MovieInfoApplication\obj\x86\Debug\MovieInfoApplication.application
